@@ -1,0 +1,134 @@
+.justify-content-space-between {
+    justify-content: space-between;
+}
+.card-value
+{
+    margin-top: 4px !important;
+    margin-bottom: 2px !important;
+}
+.finance-card{
+    padding-bottom: 0 !important;
+}
+.finance-item{
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s ease; /* Smooth transition */
+    cursor: pointer; /* Change cursor to pointer */
+}
+.finance-item:hover{    
+    transform: scale(1.01); /* Scale effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+.finance-item-size
+{
+    width: 70px;
+    height: 70px;
+    /* background-color: #556791 !important; */
+}
+.finance-button
+{
+    /* background-color: #232d44; */
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: auto !important;
+    height: auto !important;
+}
+.nav-link
+{
+    cursor: pointer;
+}
+
+
+#tableMaster tbody tr{
+    background-color: rgb(19, 26, 41); /* Row hover background color */
+}
+#tableMaster tbody td{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+/* Change the row hover color */
+#tableMaster tbody tr:hover {
+    background-color: #192030; /* Row hover background color */
+}
+
+/* Pagination button styles (optional) */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.5em 1em;
+    margin: 0 2px;
+    background-color: #192030; /* Pagination button background */
+    color: #9ea7b1 !important; /* Pagination button font color */
+    font-weight: 700 !important;
+}
+.dataTables_wrapper .dataTables_paginate
+{
+    padding-top: 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #192030; /* Hover color for pagination buttons */
+    background:linear-gradient(to bottom, #192030 0%, #192030 100%);
+    border: 1px solid #192030;
+    font-weight: 700 !important;
+}
+/* Pagination button styles (optional) */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current
+{
+    background-color: #192030; /* Pagination button background */
+    background:linear-gradient(to bottom, #192030 0%, #192030 100%);
+    border: 1px solid #192030;
+    border-bottom: 2px solid #4c78dd;
+    color: #4c78dd !important;
+    font-weight: 700 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover
+{
+    background-color: #192030; /* Pagination button background */
+    background:linear-gradient(to bottom, #192030 0%, #192030 100%);
+    border: 1px solid #192030;
+    border-bottom: 2px solid #4c78dd;
+    color: #9ea7b1 !important;
+    font-weight: 700 !important;
+}
+.dataTables_wrapper .dataTables_info
+{
+    color: #9ea7b1 !important; /* Pagination button font color */
+    padding-top: 0 !important;
+}
+.dataTables_wrapper .dataTables_length
+{
+    color: #9ea7b1 !important;
+}
+/* Style the bottom container */
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    margin-top: 10px; /* Optional: Add space above */
+}
+
+/* Style the left container to align items horizontally */
+.bottom .left {
+    display: flex;
+    align-items: center;
+}
+
+/* Adjust spacing between length change and table info */
+.bottom .left .dataTables_length {
+    margin-right: 20px; /* Add space between length change and info */
+}
+
+/* Style the right container */
+.bottom .right {
+    display: flex;
+    align-items: center;
+}
+
+/* Optional: Adjust margins for pagination */
+.bottom .dataTables_paginate {
+    margin: 0px 0;
+}

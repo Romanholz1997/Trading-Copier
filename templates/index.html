@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="author" content="Smart Developer">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='image/image.png') }}">
+
+
+    <title>{% block title %}Flask App{% endblock %}</title>
+    <!-- Vendor CSS -->
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/icon/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/apexcharts.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+    {% include 'layout/sidebar.html' %}
+    {% include 'layout/header.html' %}
+    {% include 'home/main.html' %}
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.vmap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.vmap.usa.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+  </body>
+  </html>
