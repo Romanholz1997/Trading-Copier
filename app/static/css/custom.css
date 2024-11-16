@@ -44,16 +44,16 @@
 }
 
 
-#tableMaster tbody tr{
-    background-color: rgb(19, 26, 41); /* Row hover background color */
+.customtable tbody tr{
+    background-color: rgb(19, 26, 41) !important; /* Row hover background color */
 }
-#tableMaster tbody td{
+.customtable tbody td{
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
 /* Change the row hover color */
-#tableMaster tbody tr:hover {
-    background-color: #192030; /* Row hover background color */
+.customtable tbody tr:hover {
+    background-color: #192030 !important; /* Row hover background color */
 }
 
 /* Pagination button styles (optional) */

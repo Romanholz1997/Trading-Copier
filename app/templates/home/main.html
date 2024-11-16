@@ -1,0 +1,407 @@
+<div class="main main-app p-3 p-lg-4">   
+
+    <div class="row g-3">
+      <div class="col-xl-12" id="connectAccount">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">START TO COPY TRADES IN 3 MINUTES!</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body finance-card">
+            <div class="row justify-content-center">              
+              <div class="col-6 col-sm-4 col-md-3">
+                <a href="#AddMaster" data-bs-toggle="modal">
+                <div class="finance-item">
+                  <div class="finance-item-circle finance-item-size bg-gray-400 align-items-center justify-content-center bg-success text-white">
+                    <i class="ri-chat-check-line fs-32"></i>
+                  </div><!-- finance-item-circle -->
+                  <div class="bg-gray-400 mt-3 finance-button justify-content-center align-items-center d-flex finance-item-circle">
+                    <label>1. ADD MASTER</label>
+                  </div>
+                </div><!-- finance-item -->
+                </a>
+              </div><!-- col -->
+              <div class="col-6 col-sm-4 col-md-3">
+                <a href="#AddSlave" data-bs-toggle="modal">
+                <div class="finance-item">
+                  <div class="finance-item-circle finance-item-size bg-gray-400 align-items-center justify-content-center bg-success text-white">
+                    <i class="ri-chat-delete-line fs-32"></i>
+                  </div><!-- finance-item-circle -->
+                  <div class="bg-gray-400 mt-3 finance-button justify-content-center align-items-center d-flex finance-item-circle">
+                    <label>2. ADD Solve</label>
+                  </div>
+                </div><!-- finance-item -->
+                </a>
+              </div><!-- col -->
+              <div class="col-6 col-sm-4 col-md-3">
+                <a href="#CopySetting" data-bs-toggle="modal">
+                    <div class="finance-item">
+                        <div class="finance-item-circle finance-item-size bg-gray-400 align-items-center justify-content-center bg-success text-white">
+                            <i class="ri-chat-delete-line fs-32"></i>
+                        </div><!-- finance-item-circle -->
+                        <div class="bg-gray-400 mt-3 finance-button justify-content-center align-items-center d-flex finance-item-circle">
+                            <label>
+                            3. DEFINE COPY SETTINGS
+                            </label>
+                        </div>
+                    </div><!-- finance-item -->
+                </a>
+              </div><!-- col -->
+              <div class="col-6 col-sm-4 col-md-3">
+                <a href="#CopyTrade" data-bs-toggle="modal">
+                    <div class="finance-item">
+                    <div class="finance-item-circle finance-item-size bg-gray-400 align-items-center justify-content-center bg-danger text-white">
+                        <i class="ri-chat-check-line fs-32"></i>
+                    </div><!-- finance-item-circle -->
+                    <div class="bg-gray-400 mt-3 finance-button justify-content-center align-items-center d-flex finance-item-circle">
+                        <label>
+                        4. COPY YOUR FIRST TRADE
+                        </label>
+                    </div>
+                    </div><!-- finance-item -->
+                </a>
+              </div><!-- col -->                             
+            </div><!-- row -->
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->     
+      <div class="col-xl-12" id="mastersAccount">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">MASTERS 1</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body p-3">
+            <nav class="nav nav-line mb-4">
+              <a  class="nav-link active" data-bs-toggle="tab" data-bs-target="#masterAccount">Accounts</a>
+              <a  class="nav-link" data-bs-toggle="tab" data-bs-target="#masterOpen">Open Positions</a> 
+              <a  class="nav-link" data-bs-toggle="tab" data-bs-target="#masterClose">Close Positions</a>               
+            </nav>
+            <div class="tab-content">
+              <div id="masterAccount" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblMasterAccount">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Trading Platform</th>
+                            <th>Account</th>
+                            <th>Server</th>
+                            <th>Plan</th>
+                            <th>Status</th>      
+                            <th>Action</th>                      
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>                    
+                </table>
+              </div>
+              <div id="masterOpen" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblMasterOpen">
+                    <thead>
+                      <tr>       
+                        <th>ID</th>                
+                        <th>Ticket</th>
+                        <th>Symbol</th>
+                        <th>Volume</th>
+                        <th>Profit</th>
+                        <th>price_open</th>
+                        <th>price_current</th>
+                        <th>type</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>  
+                  </table>
+              </div>
+              <div id="masterClose" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblMasterClose">
+                    <thead>
+                      <tr>
+                        <th>ID</th>                
+                        <th>Ticket</th>
+                        <th>Open Ticket</th>
+                        <th>Symbol</th>
+                        <th>Volume</th>
+                        <th>Price Open</th>
+                        <th>Price Close</th>
+                        <th>Profit</th>
+                        <th>type</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>  
+                  </table>
+              </div>
+            </div>
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+      <div class="col-xl-12" id="slavesAccount">
+        <div class="card card-one">
+          <div class="card-header">
+            <h6 class="card-title">SLAVES 1</h6>
+            <nav class="nav nav-icon nav-icon-sm ms-auto">
+              <a href="" class="nav-link"><i class="ri-refresh-line"></i></a>
+              <a href="" class="nav-link"><i class="ri-more-2-fill"></i></a>
+            </nav>
+          </div><!-- card-header -->
+          <div class="card-body p-3">
+            <nav class="nav nav-line mb-4">
+              <a  class="nav-link active" data-bs-toggle="tab" data-bs-target="#soloveAccount">Accounts</a>
+              <a  class="nav-link" data-bs-toggle="tab" data-bs-target="#solveOpen">Open Positions</a> 
+              <a  class="nav-link" data-bs-toggle="tab" data-bs-target="#solveClose">Close Positions</a>               
+            </nav>
+            <div class="tab-content">
+              <div id="soloveAccount" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblSlaveAccount">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Trading Platform</th>
+                            <th>Account</th>
+                            <th>Server</th>
+                            <th>Plan</th>
+                            <th>Status</th> 
+                            <th>Action</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>                    
+                </table>
+              </div>
+              <div id="solveOpen" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblSlaveOpen">
+                    <thead>
+                      <tr>                       
+                        <th>ID</th>
+                        <th>Account</th>
+                        <th>Ticket</th>
+                        <th>Open Ticket</th>
+                        <th>Symbol</th>
+                        <th>Volume</th>
+                        <th>Price Open</th>    
+                        <th>SL</th>
+                        <th>TP</th>
+                        <th>Type</th>
+                        <th>Time</th>
+                        <th>Status</th>                                          
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>  
+                  </table>
+              </div>
+              <div id="solveClose" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-home-tab">
+                  <table class="table table-agent mb-0 customtable" id="tblSlaveClose">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Account</th>
+                        <th>Ticket</th>
+                        <th>Open Ticket</th>
+                        <th>Symbol</th>
+                        <th>Volume</th>
+                        <th>Price Close</th>    
+                        <th>Type</th>
+                        <th>Time</th>
+                        <th>Status</th>  
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>  
+                  </table>
+              </div>
+            </div>
+          </div><!-- card-body -->
+        </div><!-- card -->
+      </div><!-- col -->
+    </div><!-- row -->
+    <div class="modal fade" id="AddMaster" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form id="addMasterForm" method="POST">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Master</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div><!-- modal-header -->
+              <div class="modal-body ">
+                  <div class="row g-3 px-3">
+                      <div class="col-md-4">
+                          <div class="mb-4">
+                              <label class="form-label">Trading Platform</label>
+                          </div>
+                          <div class="mb-4">
+                              <label class="form-label">Login</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="exampleFormControlInput1" class="form-label">Password</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="plan" class="form-label">Server</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="exampleFormControlInput1" class="form-label">Plan</label>
+                          </div>                                               
+                      </div><!-- col -->
+                      <div class="col-md-8">
+                          <div class="mb-3">
+                              <select class="form-select" name="trading_platform" aria-label="Default select example">
+                                  <option value="mt4">MT4</option>
+                                  <option value="mt5">MT5</option>                               
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <input type="number" name="account_login" class="form-control" placeholder="Account Login">
+                          </div>
+                          <div class="mb-3">
+                              <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="Input Strong Password">
+                          </div>
+                          <div class="mb-3">
+                              <input type="text" name="server" class="form-control" id="server" placeholder="Input Server">
+                          </div>
+                          <div class="mb-3">
+                              <select class="form-select" name="plan" aria-label="Default" id="plan">
+                                  <option value="noPlan">-- No Plan --</option>                        
+                              </select>
+                          </div>                                             
+                      </div><!-- col -->
+                  </div><!-- row --> 
+              </div><!-- modal-body -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">ADD</button>
+              </div><!-- modal-footer -->
+            </form>
+          </div><!-- modal-content -->
+        </div><!-- modal-content -->
+    </div><!-- modal -->
+    <div class="modal fade" id="AddSlave" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <form id="addSlaveForm" method="POST">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Solve</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div><!-- modal-header -->
+              <div class="modal-body ">
+                  <div class="row g-3 px-3">
+                      <div class="col-md-4">
+                          <div class="mb-4">
+                              <label class="form-label">Trading Platform</label>
+                          </div>
+                          <div class="mb-4">
+                              <label class="form-label">Login</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="exampleFormControlInput1" class="form-label">Password</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="plan" class="form-label">Server</label>
+                          </div>
+                          <div class="mb-4">
+                              <label for="exampleFormControlInput1" class="form-label">Plan</label>
+                          </div>                                           
+                      </div><!-- col -->
+                      <div class="col-md-8">
+                        <div class="mb-3">
+                            <select class="form-select" name="trading_platform" aria-label="Default select example">
+                                <option value="mt4">MT4</option>
+                                <option value="mt5">MT5</option>                               
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="account_login" class="form-control" placeholder="Account Login">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="Input Strong Password">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="server" class="form-control" id="server" placeholder="Input Server">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="plan" aria-label="Default" id="plan">
+                                <option value="noPlan">-- No Plan --</option>                        
+                            </select>
+                        </div>                                             
+                    </div><!-- col -->
+                  </div><!-- row --> 
+              </div><!-- modal-body -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">ADD</button>
+              </div><!-- modal-footer -->
+            </form>
+          </div><!-- modal-content -->
+        </div><!-- modal-content -->
+    </div><!-- modal -->
+    <div class="modal fade" id="CopyTrade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Copy your first trade!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div><!-- modal-header -->
+            <div class="modal-body">
+                Place your first trade on your Master as usual on your preferred platform and device.<br/>
+                Then check the "Last Copied Orders" on your dashboard to monitor copy and execution status.
+            </div><!-- modal-body -->          
+          </div><!-- modal-content -->
+        </div><!-- modal-content -->
+    </div><!-- modal -->
+    <div class="modal fade" id="CopySetting" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Trade Copier Settings List</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div><!-- modal-header -->
+            <div class="modal-body">
+                <table class="table table-agent mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Account</th>
+                            <th>Mode</th>
+                            <th>Balance/Credit</th>
+                            <th>Equity</th>
+                            <th>Free Margin</th>
+                            <th>Open Trades</th>
+                            <th>Plan</th>
+                            <th>Off/On</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>                    
+                </table>
+            </div><!-- modal-body -->           
+          </div><!-- modal-content -->
+        </div><!-- modal-content -->
+    </div><!-- modal -->
+    <div 
+      class="main-footer mt-5" 
+      style=" 
+        margin-left: -20px;    
+        padding-left: 20px;
+        margin-right: -20px;
+        padding-right: 20px;"
+    >
+      <span>&copy; 2023. Dashbyte. All Rights Reserved.</span>
+      <span>Created by: <a href="" target="_blank">Themepixels</a></span>
+    </div><!-- main-footer -->
+  </div><!-- main -->
