@@ -1,4 +1,47 @@
 $(document).ready(function() {  
+    // Handle Switch Toggle
+    $('#toggleSwitch').on('change', function() {
+        var isChecked = $(this).is(':checked');
+        var label = $(this).next('label');
+        var startIcon = label.find('.start-icon');
+        var stopIcon = label.find('.stop-icon');
+        var dataToSend = isChecked ? 1 : 0;
+        if (isChecked) {
+            // Switch to Stop State
+            startIcon.addClass('d-none');
+            stopIcon.removeClass('d-none');
+            console.log('Started');
+            // Add any additional functionality for 'Stop' here
+        } else {
+            // Switch to Start State
+            stopIcon.addClass('d-none');
+            startIcon.removeClass('d-none');
+            console.log('Stopped');
+            // Add any additional functionality for 'Start' here
+        }
+
+        $.ajax({
+            url: '/start_trading', // Replace with your actual endpoint
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ toggle: dataToSend }),
+            success: function(response) {
+                console.log('Server Response:', response);
+                // Handle successful response (e.g., show a success message)
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                // Revert the toggle switch state in case of an error
+                $('#toggleSwitch').prop('checked', !isChecked).trigger('change');
+                // Optionally, show an error message to the user
+                alert('An error occurred while processing your request. Please try again.');
+            },
+            complete: function() {
+                // Re-enable the switch after the AJAX request is complete
+                $('#toggleSwitch').prop('disabled', false);
+            }
+        });
+    });
 
     var masterOpenTable = $('#tblMasterOpen').DataTable({
         "ajax": {

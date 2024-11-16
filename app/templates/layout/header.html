@@ -1,9 +1,16 @@
 <div class="header-main px-3 px-lg-4">
     <a href="#" class="me-auto fs-32 fw-semibold" style="color: white;"></a>
     
-    <div class="dropdown dropdown-profile ms-3 ms-xl-4">
-      <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="{{ url_for('static', filename='/image/avatar.jpg') }}" alt=""></div></a>
-      <div class="dropdown-menu dropdown-menu-end mt-10-f">       
-      </div><!-- dropdown-menu -->
-    </div><!-- dropdown -->
+    <div class="d-flex align-items-center">
+        <!-- Toggle Button -->
+        <div class="form-check form-switch me-3">
+          <input class="form-check-input" type="checkbox" id="toggleSwitch" aria-label="Start/Stop Toggle">
+        </div>
+        <!-- Profile Dropdown -->
+        <div class="dropdown dropdown-profile ms-3 ms-xl-4">
+          <a href="" class="dropdown-link" data-bs-toggle="dropdown" data-bs-auto-close="outside"><div class="avatar online"><img src="{{ url_for('static', filename='/image/avatar.jpg') }}" alt=""></div></a>
+          <div class="dropdown-menu dropdown-menu-end mt-10-f">       
+          </div><!-- dropdown-menu -->
+        </div><!-- dropdown -->
+    </div><!-- d-flex -->
   </div><!-- header-main -->
