@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 bp = Blueprint('home', __name__)
 import threading
-from app.service.master import insert_master, all_master, insert_slave, all_slave, get_MasterOpenOrder, get_MasterCloseOrder, get_SlaveCloseOrder, get_SlaveOpenOrder,delete_slave_account, delete_master_account
+from app.service.master import insert_master, all_master, insert_slave, all_slave, get_MasterOpenOrder, get_MasterCloseOrder, get_SlaveCloseOrder, get_SlaveOpenOrder,delete_slave_account, delete_master_account, active_slave_account, active_master_account
 from app.order import trading_start
 
 @bp.route('/')
@@ -63,6 +63,42 @@ def delete_slaveAccount():
     response, status_code = delete_slave_account(account_id)
 
     return jsonify(response), status_code
+
+
+@bp.route('/active_slaveAccount', methods=['POST'])
+def active_slaveAccount():
+    # Get data from the form
+    account_id = request.form.get('id')
+    status = request.form.get('status')
+    
+
+    # Check if id is provided
+    if not account_id:
+        return jsonify({"error": "ID is required"}), 400
+
+    # Call the service function
+    response, status_code = active_slave_account(account_id, status)
+
+    return jsonify(response), status_code
+
+@bp.route('/active_masterAccount', methods=['POST'])
+def active_masterAccount():
+    # Get data from the form
+    account_id = request.form.get('id')
+    status = request.form.get('status')
+    
+
+    # Check if id is provided
+    if not account_id:
+        return jsonify({"error": "ID is required"}), 400
+
+    # Call the service function
+    response, status_code = active_master_account(account_id, status)
+
+    return jsonify(response), status_code
+
+
+
 
 @bp.route('/delete_masterAccount', methods=['POST'])
 def delete_masterAccount():

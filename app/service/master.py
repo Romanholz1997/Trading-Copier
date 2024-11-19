@@ -6,7 +6,12 @@ def insert_master(type, account, password, server, plan, flag = 0):
     db.session.commit()
     return new_master
 
+
+def all_master_trade():
+    return MasterAccount.query.filter(MasterAccount.flag == 0).all()
+    # return MasterAccount.query.all()
 def all_master():
+    # return MasterAccount.query.filter(MasterAccount.flag == 0).all()
     return MasterAccount.query.all()
 
 def insert_slave(type, account, password, server, plan, flag = 0):
@@ -15,7 +20,12 @@ def insert_slave(type, account, password, server, plan, flag = 0):
     db.session.commit()
     return new_slave
 
+def all_slave_trade():
+    return SlaveAccount.query.filter(SlaveAccount.flag == 0).all()
+    # return SlaveAccount.query.all()
+
 def all_slave():
+    # return SlaveAccount.query.filter(SlaveAccount.flag == 0).all()
     return SlaveAccount.query.all()
 
 def delete_slave_account(account_id):
@@ -31,6 +41,12 @@ def delete_slave_account(account_id):
 
     return {"message": "Slave account deleted successfully"}, 200
 
+def active_slave_account(account_id, status):
+    SlaveAccount.query.filter(SlaveAccount.id == account_id).update({'flag': status}, synchronize_session='fetch')
+    db.session.commit()
+    return {"message": "Slave account set successfully"}, 200
+
+
 def delete_master_account(account_id):
     master_account = MasterAccount.query.get(account_id)
 
@@ -43,6 +59,12 @@ def delete_master_account(account_id):
     db.session.commit()
 
     return {"message": "Slave account deleted successfully"}, 200
+
+def active_master_account(account_id, status):
+    MasterAccount.query.filter(MasterAccount.id == account_id).update({'flag': status}, synchronize_session='fetch')
+    db.session.commit()
+    return {"message": "Master account set successfully"}, 200
+
 
 def set_masterOpenOrder(ticket, symbol, volume, profit, price_open, price_current, type):
     open_position = masterOpenPosition(
@@ -60,7 +82,8 @@ def set_masterOpenOrder(ticket, symbol, volume, profit, price_open, price_curren
     return open_position
 
 def get_MasterOpenOrder():
-    return masterOpenPosition.query.all()
+    return masterOpenPosition.query.filter(masterOpenPosition.flag == 0).all()
+    # return masterOpenPosition.query.all()
 
 def get_MasterCloseOrder():
     return masterClosePosition.query.all()
@@ -80,6 +103,10 @@ def set_masterCloseOrder(ticket, position_id, symbol, volume, openPrice, closePr
     db.session.add(closed_order)
     db.session.commit()
     return closed_order
+
+def set_MasterClosed(position_id):
+    masterOpenPosition.query.filter(masterOpenPosition.ticket == position_id).update({'flag': 1}, synchronize_session='fetch')
+    db.session.commit()
 
 def set_slaveOpenOrder(account, ticket, open_ticket, symbol, volume, price_open, sl, tp, type):
     open_position = slaveOpenPosition(
@@ -114,8 +141,17 @@ def set_slaveCloseOrder(account, ticket, open_ticket, symbol, volume, price_clos
     return close_position
 
 def get_SlaveOpenOrder():
-    return slaveOpenPosition.query.all()
+    return slaveOpenPosition.query.filter(slaveOpenPosition.flag == 0).all()
+    # return slaveOpenPosition.query.all()
 
 def get_SlaveCloseOrder():
     return slaveClosePosition.query.all()
 
+def set_SlaveClosed(account, position_id):
+    print("-------------------------------------------------------------------")
+    slaveOpenPosition.query.filter(
+        (slaveOpenPosition.open_ticket == position_id) & 
+        (slaveOpenPosition.account == account)
+    ).update({'flag': 1}, synchronize_session='fetch')
+
+    db.session.commit()

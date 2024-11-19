@@ -93,7 +93,6 @@ $(document).ready(function() {
             masterOpenTable.ajax.reload(null, false); // Reload without resetting pagination
         }
     }
-    setInterval(reloadMasterOpenOrder, 3000);
 
     var masterCloseTable = $('#tblMasterClose').DataTable({
         "ajax": {
@@ -146,7 +145,6 @@ $(document).ready(function() {
             masterCloseTable.ajax.reload(null, false); // Reload without resetting pagination
         }
     }
-    setInterval(reloadMasterCloseOrder, 3000);
 
     var slaveOpenTable = $('#tblSlaveOpen').DataTable({
         "ajax": {
@@ -200,7 +198,6 @@ $(document).ready(function() {
             slaveOpenTable.ajax.reload(null, false); // Reload without resetting pagination
         }
     }
-    setInterval(reloadSlaveOpenOrder, 3000);
 
     var slaveCloseTable = $('#tblSlaveClose').DataTable({
         "ajax": {
@@ -248,7 +245,12 @@ $(document).ready(function() {
             slaveCloseTable.ajax.reload(null, false); // Reload without resetting pagination
         }
     }
-    setInterval(reloadSlaveCloseOrder, 3000);
+    setInterval(function() {
+        reloadSlaveCloseOrder();
+        reloadSlaveOpenOrder();
+        reloadMasterCloseOrder();
+        reloadMasterOpenOrder();
+    }, 3000);
 
     var tbl_masterAccount = $('#tblMasterAccount').DataTable({
         "ajax": {
@@ -270,7 +272,7 @@ $(document).ready(function() {
                         return "<span class='badge bg-success'>Active</span>"; // Render the badge based on status
                     }
                     else{
-                        return "<span class='badge bg-warning'>Pending</span>"; // Render the badge based on status
+                        return "<span class='badge bg-warning'>Inactive</span>"; // Render the badge based on status
                     }
                 }
             },
@@ -279,11 +281,28 @@ $(document).ready(function() {
                 "orderable": false,
                 "searchable": false,
                 "render": function(data, type, row) {
-                    return `
-                        <button class="btn btn-sm btn-danger btn-delete" data-id="${row.id}">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    `;
+                    if(row.flag === 1)
+                        {
+                            return `
+                                <button class="btn btn-sm btn-success btn-active" data-id="${row.id}">
+                                    <i class="fas fa-check-circle"></i> Active
+                                </button>
+                                <button class="btn btn-sm btn-danger btn-delete" data-id="${row.id}">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            `;
+                        }
+                        else{
+                            return `
+                                <button class="btn btn-sm btn-warning btn-inactive" data-id="${row.id}">
+                                    <i class="fas fa-ban"></i> Inactive
+                                </button>
+                                <button class="btn btn-sm btn-danger btn-delete" data-id="${row.id}">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                                
+                            `;
+                        }                    
                 }
             }
         ],
@@ -320,7 +339,7 @@ $(document).ready(function() {
                         return "<span class='badge bg-success'>Active</span>"; // Render the badge based on status
                     }
                     else{
-                        return "<span class='badge bg-warning'>Pending</span>"; // Render the badge based on status
+                        return "<span class='badge bg-warning'>Inactive</span>"; // Render the badge based on status
                     }
                 }
             },
@@ -329,11 +348,30 @@ $(document).ready(function() {
                 "orderable": false,
                 "searchable": false,
                 "render": function(data, type, row) {
-                    return `
+                    if(row.flag === 1)
+                    {
+                        return `
+                        <button class="btn btn-sm btn-success btn-active" data-id="${row.id}">
+                            <i class="fas fa-check-circle"></i> Active
+                        </button>
                         <button class="btn btn-sm btn-danger btn-delete" data-id="${row.id}">
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
+                        
                     `;
+                    }
+                    else{
+                        return `
+                        <button class="btn btn-sm btn-warning btn-inactive" data-id="${row.id}">
+                            <i class="fas fa-ban"></i> Inactive
+                        </button>
+                        <button class="btn btn-sm btn-danger btn-delete" data-id="${row.id}">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                        
+                    `;
+                    }
+                    
                 }
             }
 
@@ -417,6 +455,48 @@ $(document).ready(function() {
         }
     });
 
+    $('#tblSlaveAccount tbody').on('click', '.btn-active', function() {
+        var id = $(this).data('id');
+        if (confirm('Are you sure you want to active this record?')) {
+            $.ajax({
+                url: '/active_slaveAccount',
+                method: 'POST',
+                data: { id: id, status: 0 },
+                success: function(response) {
+                    if(response.message){
+                        tbl_slaveAccount.ajax.reload();
+                    } else {
+                        alert('Failed to delete the record.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the record.');
+                }
+            });
+        }
+    });
+
+    $('#tblSlaveAccount tbody').on('click', '.btn-inactive', function() {
+        var id = $(this).data('id');
+        if (confirm('Are you sure you want to inactive this record?')) {
+            $.ajax({
+                url: '/active_slaveAccount',
+                method: 'POST',
+                data: { id: id, status: 1 },
+                success: function(response) {
+                    if(response.message){                        
+                        tbl_slaveAccount.ajax.reload();
+                    } else {
+                        alert('Failed to aciteve the record.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the record.');
+                }
+            });
+        }
+    });
+
     $('#tblMasterAccount tbody').on('click', '.btn-delete', function() {
         var id = $(this).data('id');
         if (confirm('Are you sure you want to delete this record?')) {
@@ -430,6 +510,46 @@ $(document).ready(function() {
                         tbl_masterAccount.ajax.reload();
                     } else {
                         alert('Failed to delete the record.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the record.');
+                }
+            });
+        }
+    });
+    $('#tblMasterAccount tbody').on('click', '.btn-active', function() {
+        var id = $(this).data('id');
+        if (confirm('Are you sure you want to active this record?')) {
+            $.ajax({
+                url: '/active_masterAccount',
+                method: 'POST',
+                data: { id: id, status: 0 },
+                success: function(response) {
+                    if(response.message){
+                        tbl_masterAccount.ajax.reload();
+                    } else {
+                        alert('Failed to active the record.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('An error occurred while deleting the record.');
+                }
+            });
+        }
+    });
+    $('#tblMasterAccount tbody').on('click', '.btn-inactive', function() {
+        var id = $(this).data('id');
+        if (confirm('Are you sure you want to active this record?')) {
+            $.ajax({
+                url: '/active_masterAccount',
+                method: 'POST',
+                data: { id: id, status: 1 },
+                success: function(response) {
+                    if(response.message){
+                        tbl_masterAccount.ajax.reload();
+                    } else {
+                        alert('Failed to active the record.');
                     }
                 },
                 error: function(xhr, status, error) {

@@ -2,7 +2,7 @@ import MetaTrader5 as mt5
 import sys
 import time
 from app.trackerPosition import PositionTracker
-from app.service.master import set_slaveCloseOrder, set_slaveOpenOrder, all_master, all_slave, get_SlaveOpenOrder
+from app.service.master import set_slaveCloseOrder, set_slaveOpenOrder, all_slave_trade, all_master_trade, get_SlaveOpenOrder, set_SlaveClosed
 def get_init():    
     if not mt5.initialize():
         print("initialize() failed")
@@ -216,9 +216,11 @@ def process_trade_close(positions, slave_lists):
                 # Close the corresponding position based on its type
                 if position["type"] == 0:  # Assuming type 0 is for buy positions
                     position_id = should_open_buy(position["symbol"], account_number, open_position_id, 1)
+                    set_SlaveClosed(account_number, position["open_ticket"])
                     print(f"Closed buy position ID: {position_id}")
                 else:
                     position_id = should_open_sell(position["symbol"], account_number, open_position_id, 1)
+                    set_SlaveClosed(account_number, position["open_ticket"])
                     print(f"Closed sell position ID: {position_id}")
             
         else:
@@ -228,7 +230,7 @@ def process_trade_close(positions, slave_lists):
 
 def trading_start(app, stop_event):
     with app.app_context():
-        slaves = all_slave()
+        slaves = all_slave_trade()
         slaves_list = [slave.to_dict() for slave in slaves]  # Assuming you have a to_dict method
         print(slaves_list)        
         if not mt5.initialize():
@@ -236,7 +238,7 @@ def trading_start(app, stop_event):
             mt5.shutdown()
         tracker = PositionTracker()
         status = True
-        masters = all_master()
+        masters = all_master_trade()
         master_list = [master.to_dict() for master in masters]
         for master in master_list:
             account_number = master["account"]

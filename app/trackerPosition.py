@@ -1,6 +1,6 @@
 import MetaTrader5 as mt5
 from datetime import datetime, timedelta
-from app.service.master import set_masterOpenOrder,set_masterCloseOrder
+from app.service.master import set_masterOpenOrder,set_masterCloseOrder, set_MasterClosed
 
 class PositionTracker:
     def __init__(self):
@@ -90,7 +90,7 @@ class PositionTracker:
                 new_closed_orders.append(closed_order_data)
                 if status != True:
                     close_position = set_masterCloseOrder(deal.ticket, deal.position_id, deal.symbol, deal.volume, deal.price, deal.price, deal.profit, deal.type)
-        
+                    set_MasterClosed(deal.position_id)
         return new_closed_orders
 
     def reset(self):
